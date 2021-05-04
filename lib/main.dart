@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_task14endterm/passanger_page.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'busline.dart';
@@ -170,18 +171,22 @@ class _MyAppState extends State<MyApp> {
         ]));
   }
 
-  Widget _listTile(text, icon) {
+
+  Widget listTile(text, icon, onTap) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: EdgeInsets.only(top: 8.0),
       child: ListTile(
-          leading:
-          new IconTheme(data: new IconThemeData(size: 40), child: icon),
-          title: Text(text,
-              style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600)),
-          onTap: () => {}),
+        leading: IconTheme(data: IconThemeData(size: 40), child: icon),
+        title: Text(
+          text,
+          style: TextStyle(
+            color: Colors.black87,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        onTap: onTap,
+      ),
     );
   }
 
@@ -240,17 +245,17 @@ class _MyAppState extends State<MyApp> {
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(color: Colors.black87, width: 2)))),
-              _listTile('Продажа билетов', Icon(Icons.credit_card)),
-              _listTile('Список администраторов', Icon(Icons.people)),
-              _listTile(
-                'Автобусы',
-                Icon(Icons.departure_board),
-              ),
-              _listTile('Статистика', Icon(Icons.equalizer)),
-              _listTile('Пассажиры', Icon(Icons.airline_seat_recline_extra)),
-              _listTile('Расписание', Icon(Icons.date_range)),
-              _listTile('История', Icon(Icons.library_books)),
-              _listTile('Настройки', Icon(Icons.settings)),
+              listTile('Продажа билетов', Icon(Icons.credit_card), () {}),
+              listTile('Список администраторов', Icon(Icons.people), () {}),
+              listTile('Автобусы', Icon(Icons.departure_board), () {}),
+              listTile('Статистика', Icon(Icons.equalizer), () {}),
+              listTile('Пассажиры', Icon(Icons.airline_seat_recline_extra), () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PassengerPage()));
+              }),
+              listTile('Расписание', Icon(Icons.date_range), () {}),
+              listTile('История', Icon(Icons.library_books), () {}),
+              listTile('Настройки', Icon(Icons.settings), () {}),
             ])));
   }
 }
